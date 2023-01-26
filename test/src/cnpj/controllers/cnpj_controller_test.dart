@@ -1,11 +1,10 @@
 import 'package:dev_utils/src/cnpj/controllers/cnpj_controller.dart';
-import 'package:dev_utils/src/cnpj/models/cnpj_model.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('Testing generate func', () {
     //
-    CNPJController controller = CNPJController(CNPJModel());
+    CNPJController controller = CNPJController();
 
     // Generating cnpj
     Map<String, dynamic> result = controller.generate();

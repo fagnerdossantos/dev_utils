@@ -1,9 +1,8 @@
 import 'package:dev_utils/src/password/controllers/password_controller.dart';
-import 'package:dev_utils/src/password/models/password_model.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final controller = PasswordController(PasswordModel());
+  final controller = PasswordController();
   test('Expect password of specified length ...', () async {
     final String passwordTen = controller.generatePassword(length: 10);
     expect(passwordTen.length, 10);

@@ -1,10 +1,9 @@
 import 'package:dev_utils/src/cpf/controllers/cpf_controller.dart';
 import 'package:test/test.dart';
-import 'package:dev_utils/src/cpf/models/cpf_model.dart';
 
 void main() {
   group('CPFController', () {
-    final CPFController controller = CPFController(CPFModel());
+    final CPFController controller = CPFController();
 
     test('Generate a valid CPF', () {
       final Map<String, dynamic> cpf = controller.generate();

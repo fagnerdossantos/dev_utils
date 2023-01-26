@@ -1,13 +1,10 @@
 import 'package:dev_utils/src/roman/models/roman_model.dart';
 
-class RomanController {
-  final RomanModel _model;
-  RomanController(this._model);
-
+class RomanController extends RomanModel {
   String convertToRoman(int num) {
     String result = '';
 
-    _model.algs.forEach((key, value) {
+    algs.forEach((key, value) {
       while (num >= value) {
         result += key;
         num -= value;
