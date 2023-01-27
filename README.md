@@ -1,14 +1,14 @@
 > obs em desenvolvimento!...
-# dev_help
+# dev_utils
 
-dev_help é um pacote Dart que fornece classes de controladores para gerar e validar números de CPF, gerar números de CNPJ válidos, gerar senhas seguras, gerar IDs únicos e converter números para algarismos romanos.
+dev_utils é um pacote Dart que fornece classes de controladores para gerar e validar números de CPF, gerar números de CNPJ válidos, gerar senhas seguras, gerar IDs únicos e converter números para algarismos romanos.
 
 ## Instalação
 
-Para instalar o dev_help, adicione o seguinte ao seu arquivo `pubspec.yaml`:
+Para instalar o dev_utils, adicione o seguinte ao seu arquivo `pubspec.yaml`:
 ``` yaml
 dependencies:
-  dev_help:  <última  versão>
+  dev_utils:  <última  versão>
 ```
 E então execute `pub get` no terminal.
 
@@ -19,7 +19,7 @@ E então execute `pub get` no terminal.
 Para gerar um número de CPF válido, use o seguinte código:
 
 ``` dart
-import 'package:dev_help/dev_help.dart';
+import 'package:dev_utils/dev_utils.dart';
 void main() {
   CPFController cpfController = CPFController(CPFModel());
   var cpf = cpfController.generate();
@@ -32,7 +32,7 @@ void main() {
 Para verificar se um número de CPF é válido, use o seguinte código:
 
 ``` dart
-import 'package:dev_help/dev_help.dart';
+import 'package:dev_utils/dev_utils.dart';
 
 void main() {
   CPFController cpfController = CPFController(CPFModel());
@@ -46,7 +46,7 @@ void main() {
 Para gerar um número de CNPJ válido, use o seguinte código:
 
 ```dart
-import 'package:dev_help/dev_help.dart';
+import 'package:dev_utils/dev_utils.dart';
 
 void main() {
   CNPJController cnpjController = CNPJController(CNPJModel());
@@ -60,7 +60,7 @@ void main() {
 Para gerar uma senha segura, use o seguinte código:
 
 ``` dart 
-import 'package:dev_help/dev_help.dart';
+import 'package:dev_utils/dev_utils.dart';
 
 void main() {
   PasswordController passwordController = PasswordController(PasswordModel());
@@ -74,7 +74,7 @@ void main() {
 Para gerar um ID único, use o seguinte código:
 
 ``` dart
-import 'package:dev_help/dev_help.dart';
+import 'package:dev_utils/dev_utils.dart';
 
 void main() {
   IdController idController = IdController();
@@ -88,7 +88,7 @@ void main() {
 Para converter um número para algarismos romanos, use o seguinte código:
 
 ``` dart
-import 'package:dev_help/dev_help.dart';
+import 'package:dev_utils/dev_utils.dart';
 
 void main() {
   RomanController romanController = RomanController(RomanModel());
@@ -128,8 +128,8 @@ Se você deseja contribuir para este projeto, siga as seguintes etapas:
 
 ## Licença
 
-O dev_help é distribuído sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/seu-usuario/dev_help/blob/master/LICENSE) para mais detalhes.
+O dev_utils é distribuído sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/seu-usuario/dev_utils/blob/master/LICENSE) para mais detalhes.
 
 ## Créditos
 
-dev_help é desenvolvido e mantido por `fagnerdossantos`.
+dev_utils é desenvolvido e mantido por `fagnerdossantos`.
