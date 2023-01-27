@@ -1,4 +1,5 @@
 > obs em desenvolvimento!...
+[![wakatime](https://wakatime.com/badge/github/fagnerdossantos/dev_utils.svg)](https://wakatime.com/badge/github/fagnerdossantos/dev_utils)
 # dev_utils
 
 dev_utils é um pacote Dart que fornece classes de controladores para gerar e validar números de CPF, gerar números de CNPJ válidos, gerar senhas seguras, gerar IDs únicos e converter números para algarismos romanos.
