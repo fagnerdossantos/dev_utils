@@ -16,16 +16,25 @@ class CPFController extends CPFModel {
 
   Map<String, dynamic> validate(List<int> numbers) {
     clearCPF();
-    setNumbers(numbers.sublist(0, 9));
-    calculateDigit(10);
-    calculateDigit(11);
 
-    final int formatted = int.parse(numbers.join());
+    if (numbers.length == 11) {
+      setNumbers(numbers.sublist(0, 9));
+      calculateDigit(10);
+      calculateDigit(11);
+
+      final int formatted = int.parse(numbers.join());
+
+      return {
+        'isValid': number == formatted,
+        'isUserGiven': true,
+        'number': formatted,
+      };
+    }
 
     return {
-      'isValid': number == formatted,
+      'isValid': false,
       'isUserGiven': true,
-      'number': formatted,
+      'number': int.parse(numbers.join()),
     };
   }
 }

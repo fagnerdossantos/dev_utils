@@ -1,7 +1,7 @@
 import 'package:dev_utils/src/roman/models/roman_model.dart';
 
 class RomanController extends RomanModel {
-  String convertToRoman(int num) {
+  Map<String, dynamic> convertToRoman(int num) {
     String result = '';
 
     algs.forEach((key, value) {
@@ -11,6 +11,6 @@ class RomanController extends RomanModel {
       }
     });
 
-    return result;
+    return {"roman": result, "decimal": num};
   }
 }

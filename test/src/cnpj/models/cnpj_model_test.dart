@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:dev_utils/src/cnpj/models/cnpj_model.dart';
 import 'package:test/test.dart';
 
 void main() {
