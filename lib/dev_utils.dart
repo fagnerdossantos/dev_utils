@@ -5,3 +5,4 @@ export 'package:dev_utils/src/cnpj/controllers/cnpj_controller.dart';
 export 'package:dev_utils/src/id/controllers/id_controller.dart';
 export 'package:dev_utils/src/password/controllers/password_controller.dart';
 export 'package:dev_utils/src/roman/controllers/roman_controller.dart';
+export 'package:dev_utils/src/binarysearch/controllers/binary_search_controller.dart';
