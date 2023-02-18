@@ -1,135 +1,156 @@
-> obs em desenvolvimento!...
-# dev_utils
+# Dev Utils
 
-dev_utils é um pacote Dart que fornece classes de controladores para gerar e validar números de CPF, gerar números de CNPJ válidos, gerar senhas seguras, gerar IDs únicos e converter números para algarismos romanos.
+Dev Utils is a package that provides various development utilities to assist with different tasks. It includes tools for generating passwords, creating unique identifiers (IDs), converting decimal numbers to Roman numerals, calculating age, and performing binary search. The package also offers the ability to generate and validate CPF numbers, and to generate CNPJ numbers.
 
-## Instalação
+### OBS
+> **CPF** stands for "Cadastro de Pessoa Física," which translates to "Individual Taxpayer Registry." It is a unique identification number issued to individuals in Brazil, used for tax purposes, and for accessing various government services. The CPF is composed of 11 digits and is required for many transactions in Brazil, such as opening a bank account or purchasing a property.
 
-Para instalar o dev_utils, adicione o seguinte ao seu arquivo `pubspec.yaml`:
-``` yaml
-dependencies:
-  dev_utils:  <última  versão>
-```
-E então execute `pub get` no terminal.
+> **CNPJ** stands for "Cadastro Nacional da Pessoa Jurídica," which translates to "National Registry of Legal Entities." It is a unique identification number issued to companies and other legal entities in Brazil, used for tax purposes and to identify the entity in various transactions. The CNPJ is composed of 14 digits and is required for many business transactions in Brazil.
 
-## Utilização
+## Usage
 
-### Gerando CPF
+### CNPJ Generator
 
-Para gerar um número de CPF válido, use o seguinte código:
+To generate a CNPJ number, use `CNPJController.generate()`. This method will return a `Map` with information about the generated CNPJ, including whether it is valid and the number itself.
 
-``` dart
-import 'package:dev_utils/dev_utils.dart';
-void main() {
-  CPFController cpfController = CPFController(CPFModel());
-  var cpf = cpfController.generate();
-  print(cpf); // exibe o número de CPF gerado
-}
-```
-
-### Validando CPF
-
-Para verificar se um número de CPF é válido, use o seguinte código:
+Usage:
 
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-void main() {
-  CPFController cpfController = CPFController(CPFModel());
-  var isValid = cpfController.validate([1,2,3,4,5,6,7,8,9,0,1]);
-  print(isValid); // exibe true se o CPF é válido, false caso contrário
-}
+final CNPJController cnpjController = CNPJController();
+final cnpj = cnpjController.generate();
+  
+print(cnpj);
+// {isValid: true, isUserGiven: false, number: 88035024821163}
+
 ```
 
-### Gerando CNPJ
+### CPF Generator
 
-Para gerar um número de CNPJ válido, use o seguinte código:
+To generate a CPF number, use `CPFController.generate()`. This method will return a `Map` with information about the generated CPF, including whether it is valid and the number itself.
 
-```dart
-import 'package:dev_utils/dev_utils.dart';
-
-void main() {
-  CNPJController cnpjController = CNPJController(CNPJModel());
-  var cnpj = cnpjController.generate();
-  print(cnpj); // exibe o número de CNPJ gerado
-}
-```
-
-### Gerando senha
-
-Para gerar uma senha segura, use o seguinte código:
+Usage:
 
 ``` dart 
 import 'package:dev_utils/dev_utils.dart';
 
-void main() {
-  PasswordController passwordController = PasswordController(PasswordModel());
-  var password = passwordController.generatePassword();
-  print(password); // exibe uma senha gerada
-}
+final CPFController cpfController = CPFController();
+final cpf = cpfController.generate();
+
+print(cpf);
+// {isValid: true, isUserGiven: false, number: 77894295744}
 ```
 
-### Gerando ID
+### CPF Validator
 
-Para gerar um ID único, use o seguinte código:
+To validate a CPF number, use `CPFController.validate()`. This method receives a list of integers with 11 digits and returns a `Map` with information about the validity of the CPF, including whether it is valid and the number itself.
+
+Usage:
 
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-void main() {
-  IdController idController = IdController();
-  var id = idController.generateID();
-  print(id); // exibe um ID gerado
-}
+final CPFController cpfController = CPFController();
+final cpf = cpfController.validate([7,7,8,9,4,2,9,5,7,4,4]);
+
+print(cpf);
+// {isValid: true, isUserGiven: true, number: 77894295744}
 ```
 
-### Convertendo para algarismos romanos
+### Age Calculator
 
-Para converter um número para algarismos romanos, use o seguinte código:
+To calculate a person's age, use `AgeController.calculateAge()`. This method receives the date of birth in the format day/month/year and returns the age.
+
+Usage:
 
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-void main() {
-  RomanController romanController = RomanController(RomanModel());
-  var roman = romanController.convertToRoman(20);
-  print(roman); // exibe "XX"
-}
+final AgeController ageController = AgeController();
+final age = ageController.calculateAge(day: 1, month: 1, year: 2000);
+
+print(age); // 23
 ```
 
-O código acima irá criar uma instância de `RomanController` e usá-la para converter o número 20 para seu equivalente em algarismos romanos. Ele imprimirá "XX" na tela.
+### Binary Search
 
+To perform a binary search, use `BinarySearchController.binarySearch()`. This method receives a list of integers and a value to be searched for, and returns a `Map` with information about the search result, including whether the value was found, the index, and the number of attempts.
 
-## Características
+Usage:
 
--   Gerador de números de CPF válidos
--   Validador de números de CPF
--   Gerador de números de CNPJ válidos
--   Gerador de senhas seguras
--   Gerador de IDs únicos
--   Conversor de números para algarismos romanos
+``` dart
+import 'package:dev_utils/dev_utils.dart';
 
-## Limitações
+final BinarySearchController binarySearchController = BinarySearchController();
+final result = binarySearchController.binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7);
 
--   O gerador de CPF e CNPJ gera números válidos, mas não verifica se eles já estão em uso
--   O conversor de números para algarismos romanos só suporta números até 3999
--   O gerador de senhas gera senhas aleatórias, mas não verifica se elas atendem a critérios de segurança específicos (como incluir letras maiúsculas, minúsculas, números e caracteres especiais)
+print(result)
+// {target: 7, result: 7, index: 6, attempts: 4}
+```
 
+### Roman
 
-## Contribuindo
+The Roman package generates Roman numerals from a given integer.
 
-Se você deseja contribuir para este projeto, siga as seguintes etapas:
+Usage:
 
--   Faça um fork do projeto
--   Crie uma nova branch com a sua funcionalidade (`git checkout -b my-new-feature`)
--   Commit suas mudanças (`git commit -am 'Add some feature'`)
--   Faça push para a branch (`git push origin my-new-feature`)
--   Crie uma nova Pull Request
+``` dart
+import 'package:dev_utils/dev_utils.dart';
 
-## Licença
+final RomanController  controller = RomanController();
+print(controller.convertToRoman(decimal: 3));
+// {roman: III, decimal: 3}
+```
 
-O dev_utils é distribuído sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/seu-usuario/dev_utils/blob/master/LICENSE) para mais detalhes.
+### Id
 
-## Créditos
+The Id package generates unique identifiers of a given length.
 
-dev_utils é desenvolvido e mantido por `fagnerdossantos`.
+Usage:
+
+``` dart
+
+import 'package:dev_utils/dev_utils.dart';
+
+final IdController  controller = IdController();
+print(controller.generateID(length: 8)); // 03255660
+``` 
+
+### Password
+
+The Password package generates random passwords.
+
+Usage:
+
+``` dart
+import 'package:dev_utils/dev_utils.dart';
+
+final PasswordController  controller = PasswordController();
+print(controller.generatePassword(length: 16));
+// udS-dJf@9RBkh$n1
+```
+
+## Limitations
+The CPF and CNPJ generator creates valid numbers, but does not check if they are already in use.
+The converter from numbers to Roman numerals only supports numbers up to 3999.
+The password generator creates random passwords, but does not check if they meet specific security criteria (such as including uppercase and lowercase letters, numbers, and special characters).
+
+## Contributing
+
+Contributions are welcome and encouraged! Open an issue or submit a pull request with your idea or implementation.
+
+If you would like to contribute to this project, follow these steps:
+
+- Fork the project
+- Create a new branch with your feature (git checkout -b my-new-feature)
+- Commit your changes (git commit -am 'Add some feature')
+- Push to the branch (git push origin my-new-feature)
+- Create a new Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/fagnerdossantos/dev_utils/blob/main/LICENSE) file for details.
+
+## Credits
+dev_utils is developed and maintained by fagnerdossantos.
