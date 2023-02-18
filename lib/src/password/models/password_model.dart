@@ -5,11 +5,12 @@ class PasswordModel {
   final _chars =
       '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#\$%^&*()_+-=';
 
-  String generate(int length) {
+  String generatePassword({required int length}) {
     String password = '';
     for (int i = 0; i < length; i++) {
       password += _chars[_rng.nextInt(_chars.length)];
     }
+
     return password;
   }
 }

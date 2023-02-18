@@ -19,12 +19,10 @@ class CNPJModel {
     int module = 0;
 
     for (int i = 0; i < length1; i++) {
-      print("For func = ${_cnpj[i] * (firstWeight - i)}");
       sum += _cnpj[i] * (firstWeight - i);
     }
 
     for (int i = 0; i < length2; i++) {
-      print("For func = ${_cnpj[i + plus] * (secondWeight - i)}");
       sum += _cnpj[i + plus] * (secondWeight - i);
     }
 

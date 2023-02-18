@@ -12,4 +12,9 @@ void main() {
     final String passwordTen = controller.generatePassword();
     expect(passwordTen.length, 8);
   });
+
+  test('Expect password to be default length passing -1 as len ...', () async {
+    final String passwordTen = controller.generatePassword(length: -1);
+    expect(passwordTen.length, 8);
+  });
 }

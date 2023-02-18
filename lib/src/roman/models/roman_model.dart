@@ -1,4 +1,19 @@
 class RomanModel {
+  /// Convert decimal numbers to Roman
+  Map<String, String> convertToRoman({required int decimal}) {
+    String result = '';
+    String number = decimal.toString();
+
+    algs.forEach((key, value) {
+      while (decimal >= value) {
+        result += key;
+        decimal -= value;
+      }
+    });
+
+    return {"roman": result, "decimal": number};
+  }
+
   final Map<String, int> algs = {
     'M': 1000,
     'CM': 900,

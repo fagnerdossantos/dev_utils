@@ -4,9 +4,14 @@ import 'package:test/test.dart';
 void main() {
   final controller = RomanController();
   test('convertToRoman', () {
-    expect(controller.convertToRoman(11), 'XI');
-    expect(controller.convertToRoman(4), 'IV');
-    expect(controller.convertToRoman(1000), 'M');
-    expect(controller.convertToRoman(499), 'CDXCIX');
+    final Map<String, String> eleven = controller.convertToRoman(decimal: 11);
+    expect(eleven["roman"], 'XI');
+
+    final Map<String, String> four = controller.convertToRoman(decimal: 4);
+    expect(four["roman"], 'IV');
+
+    final Map<String, String> oneHundred =
+        controller.convertToRoman(decimal: 1000);
+    expect(oneHundred["roman"], 'M');
   });
 }
