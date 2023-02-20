@@ -1,6 +1,6 @@
 # Dev Utils
 
-Dev Utils is a package that provides various development utilities to assist with different tasks. It includes tools for generating passwords, creating unique identifiers (IDs), converting decimal numbers to Roman numerals, calculating age, and performing binary search. The package also offers the ability to generate and validate CPF numbers, and to generate CNPJ numbers.
+Dev Utils is a package that provides a variety of development utilities to assist with different tasks. It includes tools for generating passwords, creating unique identifiers (IDs), converting decimal numbers to Roman numerals, calculating age, and performing binary search. The package also offers additional functionalities such as generating and validating CPF and CNPJ numbers, looking up address information based on a Brazilian postal code (CEP), simulating a fake API call, and checking internet connectivity.
 
 ### OBS
 > **CPF** stands for "Cadastro de Pessoa Física," which translates to "Individual Taxpayer Registry." It is a unique identification number issued to individuals in Brazil, used for tax purposes, and for accessing various government services. The CPF is composed of 11 digits and is required for many transactions in Brazil, such as opening a bank account or purchasing a property.
@@ -129,6 +129,55 @@ import 'package:dev_utils/dev_utils.dart';
 final PasswordController  controller = PasswordController();
 print(controller.generatePassword(length: 16));
 // udS-dJf@9RBkh$n1
+```
+
+
+
+### Fake Call
+To simulate a fake API call with a given delay, use FakeCallController.fetch(). This method receives an object of any type and an optional delay time in milliseconds, and returns the same object after the specified delay.
+
+Usage:
+
+``` dart
+import 'package:dev_utils/dev_utils.dart';
+
+final FakeCallController fakeCallController = FakeCallController();
+final result = await fakeCallController.fetch(obj: "some object", milliseconds: 2000);
+
+print(result); // "some object"
+```
+
+### Zip Code API
+To retrieve address information from a Brazilian zip code using ViaCEP API, use ZipCodeApiController.fetch(). This method receives a valid zip code and returns a Map with the address information. If the zip code is invalid or not found, the method returns a map with an erro key set to true.
+
+Usage:
+
+``` dart
+import 'package:dev_utils/dev_utils.dart';
+
+final ZipCodeApiController zipCodeController = ZipCodeApiController();
+final address = await zipCodeController.fetch("01001000");
+
+if (address.containsKey("erro")) {
+  print("Zip code not found.");
+} else {
+  print("Address: ${address["logradouro"]}, ${address["localidade"]}");
+}
+```
+
+### Connection Status
+To check if the device is currently connected to the internet, use ConnectionController.status(). This method returns a Future<bool> that resolves to true if the device is connected, and false otherwise.
+
+Usage:
+
+``` dart
+import 'package:dev_utils/dev_utils.dart';
+
+final ConnectionController connectionController = ConnectionController();
+final isConnected = await connectionController.status();
+
+print(isConnected ? "Device is connected to the internet." : "Device is not connected to the internet.");
+
 ```
 
 ## Limitations
