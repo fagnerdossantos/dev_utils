@@ -18,33 +18,33 @@ Usage:
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-final CNPJController cnpjController = CNPJController();
-final cnpj = cnpjController.generate();
+final CNPJ cnpj = CNPJ();
+final validCNPJ = cnpj.generate();
   
-print(cnpj);
+print(validCNPJ);
 // {isValid: true, isUserGiven: false, number: 88035024821163}
 
 ```
 
 ### CPF Generator
 
-To generate a CPF number, use `CPFController.generate()`. This method will return a `Map` with information about the generated CPF, including whether it is valid and the number itself.
+To generate a CPF number, use `CPF.generate()`. This method will return a `Map` with information about the generated CPF, including whether it is valid and the number itself.
 
 Usage:
 
 ``` dart 
 import 'package:dev_utils/dev_utils.dart';
 
-final CPFController cpfController = CPFController();
-final cpf = cpfController.generate();
+final CPF cpf = CPF();
+final validCPF = cpf.generate();
 
-print(cpf);
+print(validCPF);
 // {isValid: true, isUserGiven: false, number: 77894295744}
 ```
 
 ### CPF Validator
 
-To validate a CPF number, use `CPFController.validate()`. This method receives a list of integers with 11 digits and returns a `Map` with information about the validity of the CPF, including whether it is valid and the number itself.
+To validate a CPF number, use `CPF.validate()`. This method receives a list of integers with 11 digits and returns a `Map` with information about the validity of the CPF, including whether it is valid and the number itself.
 
 Usage:
 
