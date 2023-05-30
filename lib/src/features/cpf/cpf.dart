@@ -69,8 +69,7 @@ final class CPF implements ICPFValidator, ICPFGenerator {
     cpf.add(_digitValidation(numbers: cpf, weight: 10));
     cpf.add(_digitValidation(numbers: cpf, weight: 11));
 
-    final bool isValid = (cpf.length == temp.length) &&
-        cpf.every((element) => temp.contains(element));
+    final bool isValid = cpf.toString() == temp.toString();
 
     return CPFModel(
       number: number,

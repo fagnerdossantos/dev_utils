@@ -1,7 +1,10 @@
 import 'dart:mirrors';
 
-class BinarySearch {
+import 'package:dev_utils/src/interfaces/i_binary_search.dart';
+
+class BinarySearch implements IBinarySearch {
   /// Search [Integers] and [Strings] targets
+  @override
   Map<String, dynamic> search<T>(List<T> iterable, T target) {
     if (reflectType(T) == reflectType(int)) {
       return _searchInt(iterable.cast<int>(), target as int);
@@ -10,71 +13,6 @@ class BinarySearch {
     } else {
       return {"some": 'Type $T not supported'};
     }
-  }
-
-  /// The compareTo function should be implemented for objects that will be used in binary search.
-  /// It is necessary to compare the elements and determine the correct order.
-  /// Make sure to implement the compareTo function in your custom class.
-  /// Example implementation for the Person class:
-  ///
-  /// ``` dart
-  ///  class Person implements Comparable<Person> {
-  ///    final String name;
-  ///    final int age;
-  ///
-  ///    Person({required this.name, required this.age});
-  ///
-  ///    @override
-  ///    int compareTo(Person other) {
-  ///      return name.compareTo(other.name);
-  ///    }
-  /// }
-  ///
-  ///  final List<Person> personList = [
-  ///    Person(name: 'Alice', age: 25),
-  ///    Person(name: 'Bob', age: 30),
-  ///    Person(name: 'Charlie', age: 35),
-  /// ];
-  ///
-  ///  final personTarget = Person(name: 'Bob', age: 30);
-  ///  final result = binarySearch.searchObject<Person>(personList, personTarget);
-  ///  print(result); // {target: Person, result: Person, index: 1, attempts: 1}
-  /// }
-  /// ```
-  /// Make sure to adapt the compareTo function according to your needs.
-  Map<String, dynamic> searchObject<T extends Comparable<T>>(
-      List<T> iterable, T target) {
-    Map<String, dynamic> toMap(T? result, int index, int attempts) {
-      return {
-        "target": target,
-        "result": result,
-        "index": index,
-        "attempts": attempts,
-      };
-    }
-
-    int min = 0;
-    int max = iterable.length - 1;
-    int attempts = 0;
-
-    while (min <= max) {
-      attempts++;
-
-      int mid = (min + ((max - min) ~/ 2));
-      T element = iterable[mid];
-
-      int comparison = element.compareTo(target);
-
-      if (comparison == 0) {
-        return toMap(element, mid, attempts);
-      } else if (comparison < 0) {
-        min = mid + 1;
-      } else {
-        max = mid - 1;
-      }
-    }
-
-    return toMap(null, -1, attempts);
   }
 
   // Search Integers

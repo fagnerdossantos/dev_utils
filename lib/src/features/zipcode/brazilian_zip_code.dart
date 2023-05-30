@@ -59,10 +59,19 @@ final class BrazilianZipCode extends BrazilianZipCodeHelper
     try {
       // Requesting
       final http.Response response = await http.get(url);
+      APIResponse error = {"error": true};
+      APIResponse json = {};
 
-      return response.statusCode == 200
-          ? jsonDecode(response.body)
-          : {"error": true};
+      if (response.statusCode == 200) {
+        json = jsonDecode(response.body);
+
+        if (json.containsKey("erro")) {
+          return error;
+        }
+        return json;
+      } else {
+        return error;
+      }
     } catch (e) {
       return {"error": true};
     }
