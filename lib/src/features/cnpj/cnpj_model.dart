@@ -8,4 +8,16 @@ final class CNPJModel {
     required this.isValid,
     required this.isGenerated,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'number': number,
+      'isValid': isValid,
+      'isGenerated': isGenerated,
+    };
+  }
+
+  @override
+  String toString() =>
+      'CNPJModel(number: $number, isValid: $isValid, isGenerated: $isGenerated)';
 }

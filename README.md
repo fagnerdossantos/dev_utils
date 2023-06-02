@@ -7,11 +7,12 @@ Dev Utils is a package that provides a variety of development utilities to assis
 
 > **CNPJ** stands for "Cadastro Nacional da Pessoa Jurídica," which translates to "National Registry of Legal Entities." It is a unique identification number issued to companies and other legal entities in Brazil, used for tax purposes and to identify the entity in various transactions. The CNPJ is composed of 14 digits and is required for many business transactions in Brazil.
 
-## Usage
+## Some usage examples
 
 ### CNPJ Generator
 
-To generate a CNPJ number, use `CNPJController.generate()`. This method will return a `Map` with information about the generated CNPJ, including whether it is valid and the number itself.
+To generate a CNPJ number, use `CNPJ.generate()`. This method will return a `CNPJModel` with information about the generated CNPJ, including whether it is valid and the number itself.<br>
+You can call `toMap()` or `toString()` methods.
 
 Usage:
 
@@ -19,16 +20,19 @@ Usage:
 import 'package:dev_utils/dev_utils.dart';
 
 final CNPJ cnpj = CNPJ();
-final validCNPJ = cnpj.generate();
+final CNPJModel validCNPJ = cnpj.generate();
   
 print(validCNPJ);
-// {isValid: true, isUserGiven: false, number: 88035024821163}
+
+// CNPJModel(number: 88035024821163, isValid: true, isGenerated: true)
 
 ```
 
 ### CPF Generator
 
-To generate a CPF number, use `CPF.generate()`. This method will return a `Map` with information about the generated CPF, including whether it is valid and the number itself.
+To generate a CPF number, use `CPF.generate()`. This method will return a `Map` with information about the generated CPF, including whether it is valid and the number itself.<br>
+You can call `toMap()` or `toString()` methods.
+
 
 Usage:
 
@@ -36,10 +40,11 @@ Usage:
 import 'package:dev_utils/dev_utils.dart';
 
 final CPF cpf = CPF();
-final validCPF = cpf.generate();
+final CPFModel validCPF = cpf.generate();
 
 print(validCPF);
-// {isValid: true, isUserGiven: false, number: 77894295744}
+// CPFModel(number: 77894295744, isValid: true, isGenerated: true)';
+
 ```
 
 ### CPF Validator
@@ -51,39 +56,39 @@ Usage:
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-final CPFController cpfController = CPFController();
-final cpf = cpfController.validate([7,7,8,9,4,2,9,5,7,4,4]);
+final CPF cpf = CPF();
+final CPFModel validCPF = cpf.validate("77894295744");
 
-print(cpf);
-// {isValid: true, isUserGiven: true, number: 77894295744}
+print(validCPF);
+// CPFModel(number: 77894295744, isValid: true, isGenerated: false)';
 ```
 
 ### Age Calculator
 
-To calculate a person's age, use `AgeController.calculateAge()`. This method receives the date of birth in the format day/month/year and returns the age.
+To calculate a person's age, use `Age.calculate()`. This method receives the date of birth in the format day/month/year and returns the age.
 
 Usage:
 
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-final AgeController ageController = AgeController();
-final age = ageController.calculateAge(day: 1, month: 1, year: 2000);
+final Age ageCalc = Age();
+final int age = ageCalc.calculate(day: 1, month: 1, year: 2000);
 
 print(age); // 23
 ```
 
 ### Binary Search
 
-To perform a binary search, use `BinarySearchController.binarySearch()`. This method receives a list of integers and a value to be searched for, and returns a `Map` with information about the search result, including whether the value was found, the index, and the number of attempts.
+To perform a binary search, use `BinarySearch.search()`. This method receives a list of integers and a value to be searched for, and returns a `Map` with information about the search result, including whether the value was found, the index, and the number of attempts.
 
 Usage:
 
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-final BinarySearchController binarySearchController = BinarySearchController();
-final result = binarySearchController.binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7);
+final BinarySearch binarySearch = BinarySearchController();
+final result = binarySearch.search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7);
 
 print(result)
 // {target: 7, result: 7, index: 6, attempts: 4}
@@ -98,9 +103,10 @@ Usage:
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-final RomanController  controller = RomanController();
-print(controller.convertToRoman(decimal: 3));
-// {roman: III, decimal: 3}
+final Roman roman = Roman();
+final result = roman.decimalToRoman(decimal: 3);
+print(result);
+// (III, 3)
 ```
 
 ### Id
@@ -113,8 +119,9 @@ Usage:
 
 import 'package:dev_utils/dev_utils.dart';
 
-final IdController  controller = IdController();
-print(controller.generateID(length: 8)); // 03255660
+final Id idGen = Id();
+final int id = idGen.generateID(length: 8)
+print(controller); // 03255660
 ``` 
 
 ### Password
@@ -126,59 +133,16 @@ Usage:
 ``` dart
 import 'package:dev_utils/dev_utils.dart';
 
-final PasswordController  controller = PasswordController();
-print(controller.generatePassword(length: 16));
-// udS-dJf@9RBkh$n1
+final Password passwordGen = Password();
+final password = passwordGen.generate()
+print();
+// 9RBkh$n1
+
+// Default values 
 ```
+- length = `8`
+- passType = `PasswordType.isMixed`
 
-
-
-### Fake Call
-To simulate a fake API call with a given delay, use FakeCallController.fetch(). This method receives an object of any type and an optional delay time in milliseconds, and returns the same object after the specified delay.
-
-Usage:
-
-``` dart
-import 'package:dev_utils/dev_utils.dart';
-
-final FakeCallController fakeCallController = FakeCallController();
-final result = await fakeCallController.fetch(obj: "some object", milliseconds: 2000);
-
-print(result); // "some object"
-```
-
-### Zip Code API
-To retrieve address information from a Brazilian zip code using ViaCEP API, use ZipCodeApiController.fetch(). This method receives a valid zip code and returns a Map with the address information. If the zip code is invalid or not found, the method returns a map with an erro key set to true.
-
-Usage:
-
-``` dart
-import 'package:dev_utils/dev_utils.dart';
-
-final ZipCodeApiController zipCodeController = ZipCodeApiController();
-final address = await zipCodeController.fetch("01001000");
-
-if (address.containsKey("erro")) {
-  print("Zip code not found.");
-} else {
-  print("Address: ${address["logradouro"]}, ${address["localidade"]}");
-}
-```
-
-### Connection Status
-To check if the device is currently connected to the internet, use ConnectionController.status(). This method returns a Future<bool> that resolves to true if the device is connected, and false otherwise.
-
-Usage:
-
-``` dart
-import 'package:dev_utils/dev_utils.dart';
-
-final ConnectionController connectionController = ConnectionController();
-final isConnected = await connectionController.status();
-
-print(isConnected ? "Device is connected to the internet." : "Device is not connected to the internet.");
-
-```
 
 ## Limitations
 The CPF and CNPJ generator creates valid numbers, but does not check if they are already in use.
